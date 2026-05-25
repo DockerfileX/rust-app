@@ -12,19 +12,20 @@ Environment for **Rust** Appication
 2. TZ=Asia/Shanghai
 3. C.UTF-8
 4. curl和telnet
-5. 运行的jar包：/usr/local/myapp/myapp
+5. 当前工作路径: /usr/local/myapp/
+6. 应用程序路径：/usr/local/myapp/myapp
 
 ## 3. 编译并上传镜像
 
 ```sh
-docker buildx build --platform linux/arm64,linux/amd64 -t nnzbz/rust-app:1.0.1 . --push
+docker buildx build --platform linux/arm64,linux/amd64 -t nnzbz/rust-app:1.0.2 . --push
 docker buildx build --platform linux/arm64,linux/amd64 -t nnzbz/rust-app:latest . --push
 ```
 
 ## 4. 单机
 
 ```sh
-docker run -d --net=host --name 容器名称 --init -v /usr/local/外部程序所在目录:/usr/local/vertx --restart=always nnzbz/rust-app:latest:<版本>
+docker run -d --net=host --name 容器名称 --init -v /usr/local/外部程序所在目录:/usr/local/myapp --restart=always nnzbz/rust-app:1.0.2
 ```
 
 ## 5. Swarm
@@ -39,7 +40,7 @@ vi /usr/local/myapp/stack.yml
 ```yaml{.line-numbers}
 services:
   svr:
-    image: nnzbz/rust-app:1.0.1
+    image: nnzbz/rust-app:1.0.2
     init: true
     hostname: <应用名称>
     # 端口
