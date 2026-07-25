@@ -16,8 +16,9 @@ RUN apk add tzdata
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo "Asia/Shanghai" > /etc/timezone
 RUN apk del tzdata
-# 安装 telnet minicom curl brotli
-RUN apk add busybox-extras && apk add bind-tools && apk -U add minicom && apk add curl && apk add brotli && apk add zstd
+# 安装 telnet minicom curl brotli zstd等
+RUN apk --no-cache add ca-certificates && update-ca-certificates
+RUN apk update && apk add openssl busybox-extras bind-tools minicom curl brotli zstd
 # 删除缓存
 RUN rm -rf /var/cache/apk/*
 
