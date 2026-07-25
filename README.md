@@ -18,14 +18,14 @@ Environment for **Rust** Appication
 ## 3. 编译并上传镜像
 
 ```sh
-docker buildx build --platform linux/arm64,linux/amd64 -t nnzbz/rust-app:1.0.3 . --push
+docker buildx build --platform linux/arm64,linux/amd64 -t nnzbz/rust-app:1.0.4 . --push
 docker buildx build --platform linux/arm64,linux/amd64 -t nnzbz/rust-app:latest . --push
 ```
 
 ## 4. 单机
 
 ```sh
-docker run -d --net=host --name 容器名称 --init -v /usr/local/外部程序所在目录:/usr/local/myapp --restart=always nnzbz/rust-app:1.0.3
+docker run -d --net=host --name 容器名称 --init -v /usr/local/外部程序所在目录:/usr/local/myapp --restart=always nnzbz/rust-app:1.0.4
 ```
 
 ## 5. Swarm
@@ -40,7 +40,7 @@ vi /usr/local/myapp/stack.yml
 ```yaml{.line-numbers}
 services:
   svr:
-    image: nnzbz/rust-app:1.0.3
+    image: nnzbz/rust-app:1.0.4
     init: true
     hostname: <应用名称>
     # 端口
